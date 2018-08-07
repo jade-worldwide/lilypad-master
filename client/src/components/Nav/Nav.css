@@ -1,0 +1,125 @@
+
+.navbar {
+  border-bottom: 1px solid #f5f5f5;
+  font-family: 'Quicksand', sans-serif;
+  padding: 0 10px;
+}
+
+.nav-title {
+  color: #343947;
+  font-weight: 600;
+}
+
+a {
+    color: #375c4f;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.nav-logo-item {
+  padding-right: 0;
+}
+
+.modal-card, input {
+  font-family: 'Quicksand', sans-serif;
+}
+
+.modal-card {
+  min-height: 556px;
+  min-width: 800px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-image: url('modal.svg'); */
+}
+
+.modal-card-body {
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.field:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+.login-button {
+  width: 100%
+}
+
+.sign-up-button {
+    /* position: relative;
+    bottom: -132px;
+    right: -265px; */
+    width: 100%;
+}
+
+.modal-card-foot > p{
+  width: 100%;
+}
+
+.footer-buttons {
+    background: transparent;
+    /* padding: 20px; */
+}
+
+.delete {
+  align-self: flex-end;
+}
+
+.modal-card-head {
+    border-bottom: none;
+    background-color: transparent;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.modal-card-foot {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-top: none;
+    background-color: transparent;
+}
+
+.multi-step {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.step-progress {
+    height: 500px;
+}
+
+#next-button {
+  float: right;
+  /* background-color: transparent;
+  color: #375c4f; */
+}
+
+.user-title {
+  text-align: center;
+}
+
+.user-type {
+  text-align: center;
+  border: 2px solid #375c4f;
+  border-radius: 4px;
+  margin: 20px;
+  padding: 20px;
+  /* min-height: 100px; */
+}
+
+#user-active {
+  border-color: #C97253;
+  background-color: rgba(201, 114, 83, .2)
+}
+
+@media screen and (min-width: 769px) {
+  .modal-content, .modal-card {
+
+      width: 460px;
+  }
+}

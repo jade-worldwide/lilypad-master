@@ -1,0 +1,82 @@
+.hero.is-fullheight {
+    min-height: calc(100vh - 3.25rem);
+}
+
+.hero.is-fullheight .hero-body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-hero {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+h1.title {
+  font-family: 'Frank Ruhl Libre', serif;
+  color: #343947;
+}
+
+.autocomplete-dropdown-container {
+  text-align: left;
+  border: 1px solid #eee;
+  margin-top: -2px;
+}
+
+
+.suggestion-item, .suggestion-item--active {
+  padding: 10px;
+  font-weight: 500;
+}
+
+input.input.location-search-input {
+    font-size: 1.5em;
+    font-family: 'Quicksand', sans-serif;
+    border-color: #343947;
+    padding-left: calc(2em - 1px);
+    border-radius: 3px 0px 0px 3px;
+}
+
+
+.location-input-div {
+    width: 600px;
+}
+
+.search-button {
+    border-radius: 0px 3px 3px 0px;
+}
+
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40px;
+}
+
+.clear-button, .clear-button:active, .clear-button:focus {
+    position: absolute;
+    margin-left: 450px;
+    /* margin-top: 15px; */
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    color: #ccc;
+    cursor: pointer;
+  }
+
+  .search-input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+i.fal.fa-search.search-input-icon {
+    position: absolute;
+    z-index: 10;
+    font-size: 24px;
+    color: #666;
+    margin-left: 15px;
+    /* margin-top: 2px; */
+}

@@ -1,0 +1,36 @@
+.results {
+  font-family: 'Quicksand', sans-serif;
+}
+
+.results-column {
+  padding: 0;
+
+}
+
+
+.list-column {
+
+}
+
+.result-list {
+  height: calc(100% - 57px);
+  overflow: scroll;
+}
+
+.results-columns {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    height: calc(100vh - 53px);
+}
+
+.filters-margin {
+  margin-left: 208px;
+}
+
+
+.filter-header {
+  padding: 10px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #f5f5f5;
+}

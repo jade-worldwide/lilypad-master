@@ -1,0 +1,25 @@
+.manager {
+    font-family: 'Quicksand', sans-serif;
+}
+
+.manager-container {
+  max-width: 800px;
+  text-align: left;
+  padding-top: 20px;
+}
+
+.table {
+  width: 100%;
+}
+
+h1.title {
+    font-family: 'Frank Ruhl Libre', serif;
+    color: #343947;
+}
+
+.column.user-dash-right {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
