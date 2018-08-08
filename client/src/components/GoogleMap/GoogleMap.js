@@ -13,12 +13,13 @@ export class GoogleMap extends Component {
       lat: 37.8716,
       lng: -122.2727
     },
-    zoom: 11
+    zoom: 100
   };
 
   state = {
 
   };
+
 
   markerGotClicked = (link) => {
 
@@ -39,55 +40,72 @@ export class GoogleMap extends Component {
     return {
       width: 640, // Map width in pixels
       height: 380, // Map height in pixels
-    };    
+    };
   }
 
   getBounds() {
+    if (!this.props.properties || this.props.properties.length < 1) {
+      return null;
+    }
+    const latitudes = this.props.properties.map(x => Number(x.latitude))
+    const longitudes = this.props.properties.map(x => Number(x.longitude))
+
+    const highestLatitude = Math.max(...latitudes)
+    const highestLongitude = Math.max(...longitudes)
+    const lowestLatitude = Math.min(...latitudes)
+    const lowestLongitude = Math.min(...longitudes)
+
+    console.log(`NW: lat:${highestLatitude} lng${lowestLongitude}`)
+    console.log(`SE: lat:${lowestLatitude} lng:${highestLongitude}`)
+
     return {
       nw: {
-        lat: 50.01038826014866,
-        lng: -118.6525866875
+        lat: highestLatitude,
+        lng: lowestLongitude,
       },
       se: {
-        lat: 32.698335045970396,
-        lng: -92.0217273125
+        lat: lowestLatitude,
+        lng: highestLongitude,
       }
     };
   }
 
   render() {
     const properties = this.props.properties || [];
-    console.log(properties)
     const markers = properties.map((marker, index) => {
       return <Marker
         key={index}
-        image={pad} 
         link={marker._id}
         text={marker.title}
-        photo={marker.photos}
+        image={marker.photos}
         lat={marker.latitude}
         lng={marker.longitude}
-      onClick={() => this.markerGotClicked(marker._id)}
-      isBoxVisible={marker._id === this.state.openMarker}
+        markerImage={pad}
+        onClick={() => this.markerGotClicked(marker._id)}
+        isBoxVisible={marker._id === this.state.openMarker}
       />
     })
 
-    // Important! Always set the container height explicitly
     const size = this.getSize();
     const bounds = this.getBounds();
-    const {center, zoom} = fitBounds(bounds, size);
-
+    let center = { lat: 37.432335, lng: -121.899574 };
+    let zoom = 10;
+    if (bounds) {
+      ({ center, zoom } = fitBounds(bounds, size));
+    }
+    console.log('this is center and zoom', { center, zoom });
     return (
 
       <div className="map-div">
         <GoogleMapReact
-            bootstrapURLKeys={{
-              key: 'AIzaSyDV-7_RPvHNoZ2-f-pM7XLdMMfYnVAMn5M',
-              language: 'en',
-              region: 'us', }}
+          bootstrapURLKeys={{
+            key: 'AIzaSyDV-7_RPvHNoZ2-f-pM7XLdMMfYnVAMn5M',
+            language: 'en',
+            region: 'us',
+          }}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
-          center={center}
+          center={{ lat: 37.432335, lng: -121.899574 }}
           zoom={zoom}
         >
           {markers}
