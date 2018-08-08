@@ -51,8 +51,8 @@ class Property extends Component {
   }
 
   toggleLikeProperty = () => {
-    const { user } = this.props;
-    if (user.role === "Renter") {
+    const { auth } = this.props;
+    if (auth.user.role === "Renter") {
       const { productTaste, auth: { user: { _id } } } = this.props;
       const { property: { _id: propertyId }, liked } = this.state;
       this.setState({ liked: !liked });
