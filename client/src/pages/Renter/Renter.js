@@ -85,9 +85,9 @@ class Renter extends Component {
               <Link to={"/property/" + properties._id}>
                 <ResultsList
                   title={properties.title}
-                  price={properties.price}
+                  price={properties.price.toLocaleString()}
                   numOfBeds={properties.numOfBeds}
-                  propertySize={properties.propertySize}
+                  propertySize={properties.propertySize.toLocaleString()}
                   photos={properties.photos[0]}
                 />
               </Link>

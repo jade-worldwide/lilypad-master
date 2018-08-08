@@ -55,8 +55,8 @@ export class GoogleMap extends Component {
     const lowestLatitude = Math.min(...latitudes)
     const lowestLongitude = Math.min(...longitudes)
 
-    console.log(`NW: lat:${highestLatitude} lng${lowestLongitude}`)
-    console.log(`SE: lat:${lowestLatitude} lng:${highestLongitude}`)
+    // console.log(`NW: lat:${highestLatitude} lng${lowestLongitude}`)
+    // console.log(`SE: lat:${lowestLatitude} lng:${highestLongitude}`)
 
     return {
       nw: {
@@ -93,7 +93,9 @@ export class GoogleMap extends Component {
     if (bounds) {
       ({ center, zoom } = fitBounds(bounds, size));
     }
-    console.log('this is center and zoom', { center, zoom });
+    if("Hello World"){
+      console.log('this is center and zoom', { center, zoom });
+    }
     return (
 
       <div className="map-div">

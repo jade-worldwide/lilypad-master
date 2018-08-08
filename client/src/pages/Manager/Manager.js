@@ -1,15 +1,11 @@
 import React, { Component } from "react";
 import NewPropertyForm from "../../components/NewPropertyForm/NewPropertyForm";
-import { PropertyList, /*Filters*/ } from "../../components/PropertyList";
-import { Container, Button, Modal, ModalCard, ModalBackground, /*ModalCardFooter, ModalCardHeader,*/ Delete, ModalCardBody, Table } from 'bloomer';
+import { PropertyList} from "../../components/PropertyList";
+import { Container, Button, Modal, ModalCard, ModalBackground, Delete, ModalCardBody, Table } from 'bloomer';
 import modal from "./modal-bg.svg";
 import "./Manager.css";
-// import { login } from '../../actions/authActions'
 import API from "../../utils/API";
-
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux'
-import { Link } from "react-router-dom";
 
 
 const modalBG = { backgroundImage: `url(${modal})` }

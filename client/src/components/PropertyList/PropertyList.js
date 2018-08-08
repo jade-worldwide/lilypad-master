@@ -1,14 +1,9 @@
 import React, { Component } from "react";
-import { Table, Image, Subtitle, Button, Modal, ModalCard, ModalBackground, ModalCardBody, Delete, Container, Label, Input } from 'bloomer';
+import {Button, Modal, ModalCard, ModalBackground, ModalCardBody, Delete, Container} from 'bloomer';
 import 'bulma/css/bulma.css';
 import "./PropertyList.css";
 import modal from "./modal-bg.svg";
-import {
-    Accordion,
-    AccordionItem,
-    AccordionItemTitle,
-    AccordionItemBody,
-} from 'react-accessible-accordion';
+import {Accordion} from 'react-accessible-accordion';
 import Applied from "./Applied";
 import 'react-accessible-accordion/dist/fancy-example.css';
 import { Link } from "react-router-dom";

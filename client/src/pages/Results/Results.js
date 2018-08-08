@@ -1,9 +1,9 @@
 import "./Results.css";
 import React, { Component } from "react";
-import { ResultsList, Filters } from "../../components/ResultsList";
-import { Table, Image, Subtitle, Button, Field, Label, Control, Checkbox, Input, Select } from 'bloomer';
+import { ResultsList } from "../../components/ResultsList";
+import { Button, Field, Label, Control, Select } from 'bloomer';
 import { GoogleMap } from "../../components/GoogleMap";
-import { Slider, Switch, Tooltip } from 'antd';
+import { Slider } from 'antd';
 import 'antd/lib/slider/style/index.css';
 import 'antd/lib/tooltip/style/index.css';
 
@@ -173,8 +173,8 @@ class Results extends Component {
                 name="maxPrice"
                 range value={[form.minPrice, form.maxPrice]} min={0} max={200000} />
               <div className="slider-output">
-                <p>Min: {form.minPrice}</p>
-                <p className="max">Max: {form.maxPrice}</p>
+                <p>Min: {form.minPrice.toLocaleString()}</p>
+                <p className="max">Max: {form.maxPrice.toLocaleString()}</p>
               </div>
             </Control>
           </Field>

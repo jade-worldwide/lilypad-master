@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Field, Label, Control, Input, Button, Checkbox, Select } from 'bloomer';
+import { Field, Label, Control, Input, Button, Select } from 'bloomer';
 import 'bulma/css/bulma.css';
 import "./ResultsList.css";
-import { Link, withRouter } from "react-router-dom";
 import _ from 'lodash';
 import API from "../../utils/API";
 
@@ -29,7 +28,7 @@ export class Filters extends Component {
 
     Object.keys(defaultForm).forEach(key => {
       form[key] = urlParams.get(key) || defaultForm[key]
-      this.handleFilters = _.debounce(this.handleFilters, 100);
+      this.handleFilters = _.debounce(this.handleFilters, 50);
     })
 
     this.state = {
