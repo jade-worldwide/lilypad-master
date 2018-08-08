@@ -7,6 +7,7 @@ import 'bulma/css/bulma.css';
 import "./Nav.css";
 import pad from "./pad.png";
 import modal from "./modal.svg";
+import login from "./login.svg";
 import SignUpModal from "./SignUpModal";
 import LoginModal from "./LoginModal";
 import { MemberType } from "./MemberType";
@@ -14,6 +15,8 @@ import { getAuthenticated, logout } from '../../actions/authActions'
 
 // const padLogo = { image: `url(${pad})` }
 const modalBG = { backgroundImage: `url(${modal})` }
+
+const loginBG = { backgroundImage: `url(${login})` }
 
 class Nav extends Component {
 
@@ -120,15 +123,16 @@ class Nav extends Component {
         <div className="login-modal">
           <Modal className={this.state.login}>
             <ModalBackground />
-            <ModalCard>
+            <ModalCard className="login-card has-text-centered" style={loginBG}>
+
               <ModalCardHeader>
-                <ModalCardTitle></ModalCardTitle>
-                <Delete onClick={this.modalClose} />
+                <ModalCardTitle><h1 className="title">Login</h1></ModalCardTitle>
+                <Delete className="login-delete" onClick={this.modalClose} />
               </ModalCardHeader>
-              <LoginModal 
+              <LoginModal
               close={this.modalClose}/>
               <ModalCardFooter hasTextAlign="centered">
-                <p>Already have an account? <Link to={""}>Log In</Link></p>
+
               </ModalCardFooter>
             </ModalCard>
           </Modal>
