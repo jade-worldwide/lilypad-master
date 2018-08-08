@@ -73,18 +73,17 @@ class Nav extends Component {
               </NavbarItem>
             </Fragment>
           ) :
-            <span>
-              {user.role === 'Renter' ? (<span>
+            <span className="nav-right">
+              {user.role === 'Renter' ? (<span className="user-role">
                 <NavbarItem>
                   <Link to={"/renter/" + user._id}><p>Renter</p></Link>
                 </NavbarItem>
               </span>
-              ) : (<span>
-                <Fragment>
+              ) : (<span className="user-role">
+                
                   <NavbarItem>
                     <Link to={"/manager/" + user._id}><p>Manager Dashboard</p></Link>
                   </NavbarItem>
-                </Fragment>
               </span>)}
 
               <NavbarItem href="#" onClick={this.logout}>

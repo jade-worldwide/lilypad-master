@@ -17,6 +17,28 @@ h1.title {
     color: #343947;
 }
 
+th.delete-column {
+    width: 54px;
+}
+
+.delete-button {
+  border: none;
+}
+
+th.app-column {
+    width: 120px;
+}
+
+th.rented-column {
+    width: 80px;
+}
+
+td.rented-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .column.user-dash-right {
     display: flex;
     flex-direction: row;
