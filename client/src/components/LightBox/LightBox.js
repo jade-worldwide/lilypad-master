@@ -3,12 +3,6 @@ import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css'; // This only needs to be imported once in your app
 import { Button } from 'bloomer';
 
-const images = [
-  '//placekitten.com/1500/500',
-  '//placekitten.com/4000/3000',
-  '//placekitten.com/800/1200',
-  '//placekitten.com/1500/1500',
-];
 
 export default class LightboxExample extends Component {
   constructor(props) {
@@ -21,6 +15,11 @@ export default class LightboxExample extends Component {
   }
 
   render() {
+    const property = this.props.property || [];
+    let images = []
+    images = images.concat(property.photos)
+    console.log("Images =>", images)
+
     const { photoIndex, isOpen } = this.state;
 
     return (

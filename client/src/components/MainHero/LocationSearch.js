@@ -52,7 +52,7 @@ export class LocationSearchInput extends React.Component {
       console.log("City: ", city)
       console.log("State: ", state)
       let site = window.location.href
-      window.location.href = `${site}results?city=${city}&state=${state}`
+      window.location.href = site + "results?city=" + city + "&state=" + state;
 
     }
   }

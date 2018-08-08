@@ -25,13 +25,18 @@ class Property extends Component {
     API.getProperty(this.props.match.params.id)
       .then(res => this.setState({ property: res.data }))
       .catch(err => console.log(err));
-    this.loadUser();
   }
 
-  loadUser = () => {
-    const { auth } = this.props;
-    if (auth.user) {
-      let currentUser = auth.user._id
+  componentWillReceiveProps(nextProps){
+    const { user } = nextProps;
+    console.log(user);
+    if(user){
+      this.loadUser(user);
+    }
+  }
+  loadUser = (user) => {
+    if (user) {
+      let currentUser = user._id
       console.log("User Id =>", currentUser)
       API.getUser(currentUser)
         .then(res => {
@@ -41,6 +46,7 @@ class Property extends Component {
 
           const likedProperties = properyLikesArray[0]
           const propertyId = this.props.match.params.id
+          console.log("liked properties =>", likedProperties)
 
           if (likedProperties.indexOf(propertyId) !== -1) {
             this.setState({ liked: true })
@@ -86,11 +92,12 @@ class Property extends Component {
                 <span>
                   {user.role === "Renter" ? (
                     <div className="buttons-right">
+                      <Button isColor='white'><p><i className="far fa-share-square"></i>  Share</p></Button>
                       <Button isColor='white' className="like-button" onClick={this.toggleLikeProperty}><p>
                         <i className={this.state.liked ? 'fas fa-heart is-liked' : 'far fa-heart'}></i> Like</p></Button>
                     </div>) :
-                     (<Button isColor='white'><p><i className="far fa-share-square"></i>  Share</p></Button>)}
-                </span>) : 
+                    (<Button isColor='white'><p><i className="far fa-share-square"></i>  Share</p></Button>)}
+                </span>) :
                 (<Button isColor='white'><p><i className="far fa-share-square"></i>  Share</p></Button>)}
             </span>
           </Container>
