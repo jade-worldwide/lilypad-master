@@ -36,7 +36,6 @@ class Property extends Component {
         .then(res => {
           let userInfo = []
           userInfo = userInfo.concat(res.data)
-          console.log("userInfo =>", userInfo)
           const properyLikesArray = userInfo.map(x => x.propertylike);
 
           const likedProperties = properyLikesArray[0]
@@ -118,7 +117,6 @@ class Property extends Component {
             <Subtitle isSize={5} className="description-subtitle">About this property</Subtitle>
             <p>
               {this.state.property.description}
-              {/* Sunny and bright, 2 bedroom 1 bath Apartment in a great Berkeley 6-plex - Enjoy this cozy 2 Bedroom, 1 Bath Unit in Great 6-plex in Berkeley. Apartment is fully carpeted and newly painted. Kitchen has linoleum flooring, counter top and wood cabinets. Bathroom has linoleum flooring, vanity. This complex is centrally located in Berkeley just a short walk to Ashby BART, Sports Basement and San Pablo Park!! */}
             </p>
           </Box>
           <Subtitle isSize={5} className="description-subtitle">Features</Subtitle>

@@ -79,7 +79,7 @@ export default {
     return axios.post("/propertyLike", propertyData);
   },
   loginUser: function (userData) {
-    console.log('we are sssending a POST request to users/login')
+    console.log('we are sending a POST request to users/login')
     return axios.post("/api/users/login", userData);
   },
   saveUser: function (userData) {

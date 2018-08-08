@@ -10,8 +10,8 @@ import modal from "./modal.svg";
 import login from "./login.svg";
 import SignUpModal from "./SignUpModal";
 import LoginModal from "./LoginModal";
-import { MemberType } from "./MemberType";
 import { getAuthenticated, logout } from '../../actions/authActions'
+import { isFuture } from "date-fns";
 
 // const padLogo = { image: `url(${pad})` }
 const modalBG = { backgroundImage: `url(${modal})` }
@@ -19,15 +19,25 @@ const modalBG = { backgroundImage: `url(${modal})` }
 const loginBG = { backgroundImage: `url(${login})` }
 
 class Nav extends Component {
-
-  componentWillMount() {
-    this.props.getAuthenticated();
-  }
-
   state = {
     modal: "",
     login: ""
   };
+
+  componentWillMount() {
+    this.props.getAuthenticated();
+  }
+  componentWillReceiveProps(nextProps){
+    console.log(nextProps);
+    if(nextProps.userAccountCreated){
+      this.setState({modal: null});
+      return;
+    } else if(nextProps.user){
+      this.setState({login : null})
+    }
+  }
+
+
 
   modalOpen = () => {
     this.setState({ modal: "is-active" })
@@ -140,7 +150,8 @@ class Nav extends Component {
 }
 
 const mapStateToProps = ({ auth }) => ({
-  user: auth.user
+  user: auth.user,
+  userAccountCreated: auth.userAccountCreated
 });
 
 const mapDispatchToProps = dispatch => ({

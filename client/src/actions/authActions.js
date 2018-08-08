@@ -1,5 +1,8 @@
 import API from "../utils/API";
-import { IS_AUTHENTICATED, AUTHENTICATION_FAILED } from '../constants/actionTypes';
+import {displayError } from './errorActions'
+import { IS_AUTHENTICATED, AUTHENTICATION_FAILED, SUCCESSFULLY_SIGNED  } from '../constants/actionTypes';
+
+
 
 export const signup = ({ name, email, phonenumber, password, role }) => async dispatch => {
 
@@ -11,22 +14,19 @@ export const signup = ({ name, email, phonenumber, password, role }) => async di
             password,
             role
 
-        })
+        });
+        console.log(data, '--testing.......');
 
-        if (data.error) {
             dispatch({
-                type: IS_AUTHENTICATED,
-                payload: "Invalid credentials, cannot signup with that email or username"
-            })
-        } else {
-            dispatch({
-                type: IS_AUTHENTICATED,
+                type: SUCCESSFULLY_SIGNED,
                 payload: data.user
             })
-        }
+        
 
     } catch (error) {
-        console.error(error);
+        console.log(error.response);
+        const {data} = error.response
+        displayError(data.error)(dispatch)
     }
 }
 
@@ -74,7 +74,7 @@ export const getAuthenticated = () => async dispatch => {
 
 export const logout = () => async dispatch => {
     try {
-        // const revoke = await API.logout()
+        const revoke = await API.logout()
         dispatch({
             type: IS_AUTHENTICATED,
             payload: null

@@ -24,10 +24,10 @@ router.post('/register', function (req, res) {
 				"$regex": "^" + email + "\\b", "$options": "i"
 		}}, function (err, mail) {
 				if ( mail ) {
-					res.send({
+					res.status(400).send({
+						success:false,
 						error: 'you cannot do that son'
 					})
-
 				}
 				else {
 					let newUser = new User({
@@ -43,7 +43,7 @@ router.post('/register', function (req, res) {
 					.createUser(newUser, function (err, user) {
 						if (err) throw err;
 						console.log(user);
-						res.redirect('/');
+						res.send({success: true, user})
 					})
          			
 				}
@@ -119,8 +119,10 @@ router.get('/authenticated', (req, res) => {
 })
 
 router.post('/logout',  (req, res) => {
-	req.logOut();
-	res.send({success: true})
+	req.logout();
+	req.session.destroy();
+	console.log("khwhhshdw")
+	res.redirect('/')
 });
 
 // View one property

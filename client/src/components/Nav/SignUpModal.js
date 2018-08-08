@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ModalCardBody, Button, Field, Control, Input, Label, Select } from 'bloomer';
+import { Button, Field, Control, Input, Label, Select } from 'bloomer';
 import { FormErrors } from './FormErrors';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
@@ -20,8 +20,13 @@ class SignUpModal extends Component {
       emailValid: false,
       phonenumberValid: false,
       passwordValid: false,
-      formValid: false
+      formValid: false,
+      errorMessage: null
     }
+  }
+
+  componentWillReceiveProps(nextProps){
+   
   }
 
   handleInputChange = event => {
@@ -101,6 +106,7 @@ class SignUpModal extends Component {
   }
 
   render() {
+    const {errorMessage} =this.props
     return (
       <div className="sign-up-modal columns">
         <div className="column">
@@ -179,7 +185,7 @@ class SignUpModal extends Component {
             className="sign-up-button is-medium">
             <p>Sign Up</p>
           </Button>
-
+         <p>{errorMessage.errorMessage}</p>
         </div>
 
 
@@ -189,8 +195,10 @@ class SignUpModal extends Component {
   }
 }
 
-const mapStateToProps = ({ auth }) => ({
-  user: auth.user
+const mapStateToProps = ({ auth, errorMessage }) => ({
+  user: auth.user,
+  errorMessage
+
 });
 
 
