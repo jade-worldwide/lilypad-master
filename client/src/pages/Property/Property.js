@@ -8,6 +8,8 @@ import { Container, Title, /*Image,*/ Box, Button, Subtitle } from 'bloomer';
 // import house from './house.jpg';
 import "./Property.css";
 
+const shareLink = "https://www.facebook.com/sharer/sharer.php?u=" + window.location.href;
+
 class Property extends Component {
   // Setting our component's initial state
   state = {
@@ -16,6 +18,7 @@ class Property extends Component {
     },
     liked: null,
     shared: "copy-url",
+    share: shareLink,
   };
 
    // When the component mounts, load all properties and save them to this.state.properties
@@ -34,7 +37,7 @@ class Property extends Component {
     this.setState({liked: !liked});
     productTaste({userId: _id, propertyId, likeStatus:  !liked});
   }
-  
+
 
   onSendApplication() {
     const { onSendApplication, auth: { user: { email } } } = this.props;
@@ -46,14 +49,17 @@ class Property extends Component {
   render() {
     const mainImage = { backgroundImage: `url(${this.state.property.photos[0]})` }
     return (
-      <div className="Property">
+      <div className="property">
         <div className="main-image" style={ mainImage }>
           <Container className="property-container image-buttons">
             <div className="buttons-left">
               <LightBox />
             </div>
             <div className="buttons-right">
-              <Button isColor='white'><p><i className="far fa-share-square"></i>  Share</p></Button>
+
+
+
+              <a href={this.state.share} target="about_blank"><Button isColor='white'><p><i className="fab fa-facebook"></i>  Share</p></Button></a>
               <Button isColor='white' className="like-button" onClick={this.toggleLikeProperty}><p>
                 <i className={this.state.liked ? 'fas fa-heart is-liked' : 'far fa-heart'}></i> Liked</p></Button>
             </div>

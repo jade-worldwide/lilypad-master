@@ -8,7 +8,7 @@ import 'bulma/css/bulma.css';
 import "./NewPropertyForm.css";
 import ImageUploader from 'react-images-upload';
 
-// Cloudinary 
+// Cloudinary
 let imageUrl;
 let CLOUDINARY_UPLOAD_PRESET = 'nre9efzy'
 let CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dkuhmdf7w/upload'
@@ -213,7 +213,7 @@ class NewPropertyForm extends Component {
     render() {
         // const { user } = this.props;
         return (
-            <Container>
+            <Container className="new-property-form">
                 <h1 className="title has-text-centered">New Property</h1>
                 <Field>
                     <Label>Title</Label>
