@@ -25,13 +25,18 @@ class Property extends Component {
     API.getProperty(this.props.match.params.id)
       .then(res => this.setState({ property: res.data }))
       .catch(err => console.log(err));
-    this.loadUser();
   }
 
-  loadUser = () => {
-    const { auth } = this.props;
-    if (auth.user) {
-      let currentUser = auth.user._id
+  componentWillReceiveProps(nextProps){
+    const { user } = nextProps;
+    console.log(user);
+    if(user){
+      this.loadUser(user);
+    }
+  }
+  loadUser = (user) => {
+    if (user) {
+      let currentUser = user._id
       console.log("User Id =>", currentUser)
       API.getUser(currentUser)
         .then(res => {
@@ -41,6 +46,7 @@ class Property extends Component {
 
           const likedProperties = properyLikesArray[0]
           const propertyId = this.props.match.params.id
+          console.log("liked properties =>", likedProperties)
 
           if (likedProperties.indexOf(propertyId) !== -1) {
             this.setState({ liked: true })
