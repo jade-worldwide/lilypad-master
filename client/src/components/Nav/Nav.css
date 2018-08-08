@@ -25,8 +25,6 @@ a {
 }
 
 .modal-card {
-  min-height: 556px;
-  min-width: 800px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -46,6 +44,24 @@ a {
 
 .login-button {
   width: 100%
+}
+
+button.delete.login-delete {
+  align-self: flex-start;
+  position: relative;
+}
+
+.button.is-primary[disabled] {
+  background-color: #5B897E;
+
+}
+
+.modal-card.login-card {
+    width: 500px;
+    justify-content: center;
+    background-color: #ffffff;
+    height: 330px;
+    border-radius: 6px;
 }
 
 .sign-up-button {
@@ -115,6 +131,11 @@ a {
 #user-active {
   border-color: #C97253;
   background-color: rgba(201, 114, 83, .2)
+}
+
+.form-errors {
+  margin-top: -24px;
+  height: 24px;
 }
 
 @media screen and (min-width: 769px) {

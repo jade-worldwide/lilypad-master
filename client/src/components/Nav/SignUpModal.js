@@ -51,7 +51,7 @@ class SignUpModal extends Component {
         break;
       case 'phonenumber':
         phonenumberValid = value.length >= 10;
-        fieldValidationErrors.phonenumber = phonenumberValid ? '' : ' phonenumber is too short';
+        fieldValidationErrors.phonenumber = phonenumberValid ? '' : ' is too short';
         break;
       case 'password':
         passwordValid = value.length >= 6;
@@ -138,7 +138,7 @@ class SignUpModal extends Component {
                 value={this.state.password}
                 onChange={this.handleInputChange}
                 name="password"
-                type="Text"
+                type="password"
                 placeholder='Password'
                 isSize="medium" />
             </Control>
