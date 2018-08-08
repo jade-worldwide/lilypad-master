@@ -92,11 +92,12 @@ class Property extends Component {
                 <span>
                   {user.role === "Renter" ? (
                     <div className="buttons-right">
+                      <Button isColor='white'><p><i className="far fa-share-square"></i>  Share</p></Button>
                       <Button isColor='white' className="like-button" onClick={this.toggleLikeProperty}><p>
                         <i className={this.state.liked ? 'fas fa-heart is-liked' : 'far fa-heart'}></i> Like</p></Button>
                     </div>) :
-                     (<Button isColor='white'><p><i className="far fa-share-square"></i>  Share</p></Button>)}
-                </span>) : 
+                    (<Button isColor='white'><p><i className="far fa-share-square"></i>  Share</p></Button>)}
+                </span>) :
                 (<Button isColor='white'><p><i className="far fa-share-square"></i>  Share</p></Button>)}
             </span>
           </Container>
