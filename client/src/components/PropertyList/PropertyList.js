@@ -40,19 +40,9 @@ export class PropertyList extends Component {
 
   render() {
     return (
-      <div className="property-list">
-    <Table>
-      <thead>
-        <tr>
-          <th className="address-column">Address</th>
-          <th className="rented-column">Rented</th>
-          <th className="app-column">Applications</th>
-          <th className="delete-column"></th>
-        </tr>
-      </thead>
 
-      <tbody>
-        <tr>
+
+        <tr className="property-list">
           <td>
           <Link to={"/property/" + this.props._id}><p>{this.props.title}</p></Link>
           </td>
@@ -68,12 +58,7 @@ export class PropertyList extends Component {
             <Button className="is-small delete-button"><p><i className="far fa-trash-alt"></i></p></Button>
 
           </td>
-        </tr>
-
-      </tbody>
-    </Table>
-
-        <div className="application-modal">
+          <div className="application-modal">
           <Modal className={this.state.modal}>
 
             <ModalBackground />
@@ -85,9 +70,7 @@ export class PropertyList extends Component {
                       <Container>
 
                         <Accordion>
-                          <Applied />
-                          <Applied />
-                          <Applied />
+                          <Applied applications={this.props.property.application} />
                         </Accordion>
 
                       </Container>
@@ -98,7 +81,11 @@ export class PropertyList extends Component {
           </ModalCard>
           </Modal>
         </div>
-      </div>
+        </tr>
+
+
+    
+
 
 
     );

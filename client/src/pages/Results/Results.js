@@ -196,9 +196,6 @@ class Results extends Component {
             </Control>
           </Field>
 
-
-
-          <Button isColor='primary' className="apply-filters"><p>Apply</p></Button>
         </div>
         <div className={this.state.show}>
           <div className="column results-column list-column">
@@ -213,7 +210,7 @@ class Results extends Component {
                     title={property.title}
                     price={property.price.toLocaleString()}
                     numOfBeds={property.numOfBeds}
-                    photos={property.photos}
+                    photos={property.photos[0]}
                     propertySize={property.propertySize.toLocaleString()}
                   />
                 </Link>
