@@ -34,13 +34,17 @@ export class Manager extends Component {
     this.setState({ modal: "is-active" })
   }
 
-
+  reload = () => {
+    window.location.reload();
+ }
 
   modalClose = () => {
     this.setState({
       modal: "",
       login: "",
     })
+
+    this.reload();
   }
 
   componentDidMount() {
@@ -125,6 +129,7 @@ export class Manager extends Component {
 
                   <div className='step-progress'>
                     <NewPropertyForm
+                    close={this.modalClose}
                     />
                   </div>
 

@@ -1,68 +1,97 @@
 import React, { Component } from "react";
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import LightBox from "../../components/LightBox";
 import API from "../../utils/API";
-import {sendApplication, productTaste} from '../../actions/propertyActions';
+import { sendApplication, productTaste } from '../../actions/propertyActions';
 import { Container, Title, /*Image,*/ Box, Button, Subtitle } from 'bloomer';
-// import house from './house.jpg';
+import house from './house.jpg';
 import "./Property.css";
 
-
-
+const mainImage = { backgroundImage: `url(${house})` }
 class Property extends Component {
   // Setting our component's initial state
   state = {
-    property: {
-      photos: []
-    },
+    property: [],
+    user: [],
     liked: null,
+    userLikes: [],
     shared: "copy-url",
   };
 
-   // When the component mounts, load all properties and save them to this.state.properties
-   componentDidMount() {
+  // When the component mounts, load all properties and save them to this.state.properties
+  componentDidMount() {
     API.getProperty(this.props.match.params.id)
       .then(res => this.setState({ property: res.data }))
       .catch(err => console.log(err));
+    this.loadUser();
   }
 
+  loadUser = () => {
+    const { user } = this.props;
+    if (user) {
+      let currentUser = user._id
+      console.log("User Id =>", currentUser)
+      API.getUser(currentUser)
+        .then(res => {
+          let userInfo = []
+          userInfo = userInfo.concat(res.data)
+          console.log("userInfo =>", userInfo)
+          const properyLikesArray = userInfo.map(x => x.propertylike);
 
+          const likedProperties = properyLikesArray[0]
+          const propertyId = this.props.match.params.id
+
+          if (likedProperties.indexOf(propertyId) !== -1) {
+            this.setState({ liked: true })
+          }
+        })
+    } else {
+      console.log("No User")
+    }
+  }
 
   toggleLikeProperty = () => {
-
-    const { productTaste, auth: { user: { _id } } } = this.props;
-    const { property: { _id: propertyId }, liked } = this.state;
-    this.setState({liked: !liked});
-    productTaste({userId: _id, propertyId, likeStatus:  !liked});
+    const { user } = this.props;
+    if (user.role === "Renter") {
+      const { productTaste, auth: { user: { _id } } } = this.props;
+      const { property: { _id: propertyId }, liked } = this.state;
+      this.setState({ liked: !liked });
+      productTaste({ userId: _id, propertyId, likeStatus: !liked });
+    }
   }
 
 
   onSendApplication() {
     const { onSendApplication, auth: { user: { email } } } = this.props;
-    const {property: { _id }} = this.state;
-    onSendApplication({userEmail: email, propertyId: _id});
+    const { property: { _id } } = this.state;
+    onSendApplication({ userEmail: email, propertyId: _id });
   }
 
 
   render() {
-    const shareLink = "https://www.facebook.com/sharer/sharer.php?u=" + window.location.href;
-    const mainImage = { backgroundImage: `url(${this.state.property.photos[0]})` }
+    const { user } = this.props;
     return (
-      <div className="property">
-        <div className="main-image" style={ mainImage }>
+      <div className="Property">
+        <div className="main-image" style={mainImage}>
           <Container className="property-container image-buttons">
             <div className="buttons-left">
-              <LightBox />
+              <LightBox
+                property={this.state.property}
+              />
             </div>
-            <div className="buttons-right">
-
-
-
-              <a href={shareLink} target="about_blank"><Button isColor='white'><p><i className="fab fa-facebook"></i>  Share</p></Button></a>
-              <Button isColor='white' className="like-button" onClick={this.toggleLikeProperty}><p>
-                <i className={this.state.liked ? 'fas fa-heart is-liked' : 'far fa-heart'}></i> Liked</p></Button>
-            </div>
+            <span>
+              {user ? (
+                <span>
+                  {user.role === "Renter" ? (
+                    <div className="buttons-right">
+                      <Button isColor='white' className="like-button" onClick={this.toggleLikeProperty}><p>
+                        <i className={this.state.liked ? 'fas fa-heart is-liked' : 'far fa-heart'}></i> Like</p></Button>
+                    </div>) :
+                     (<Button isColor='white'><p><i className="far fa-share-square"></i>  Share</p></Button>)}
+                </span>) : 
+                (<Button isColor='white'><p><i className="far fa-share-square"></i>  Share</p></Button>)}
+            </span>
           </Container>
         </div>
         <Container className="property-container">
@@ -75,9 +104,14 @@ class Property extends Component {
                 <span className="property-attribute"><p><i className="fas fa-bath"></i> {this.state.property.numOfBaths} Bathroom</p></span>
               </div>
             </div>
-            <div className="apply-button">
-              <Button isColor='primary' onClick={() => this.onSendApplication()}><p>Send Application</p></Button>
-            </div>
+            <span>
+            {user ? (
+              <span>
+            {user.role === "Renter" ? (
+              <div className="apply-button">
+                <Button isColor='primary' onClick={() => this.onSendApplication()}><p>Send Application</p></Button>
+              </div>
+            ) : ""}</span>):""}</span>
           </div>
 
           <Box className="description-box">
@@ -144,7 +178,7 @@ class Property extends Component {
                   <p>
                     {this.state.property.pets}
                     {/* Cats, Small dogs */}
-                    </p>
+                  </p>
                 </div>
               </div>
               <div className="column is-3 property-feature">
@@ -168,13 +202,14 @@ class Property extends Component {
   }
 }
 
-const mapStateToProps = ({auth, property}) => ({
+const mapStateToProps = ({ auth, property }) => ({
   auth,
+  user: auth.user,
   property
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onSendApplication:  bindActionCreators(sendApplication, dispatch),
+  onSendApplication: bindActionCreators(sendApplication, dispatch),
   productTaste: bindActionCreators(productTaste, dispatch)
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Property);

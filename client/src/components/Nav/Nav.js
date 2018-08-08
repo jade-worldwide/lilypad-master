@@ -41,11 +41,15 @@ class Nav extends Component {
     this.props.logout()
   }
 
+  reload = () => {
+    window.location.reload();
+ }
   modalClose = () => {
     this.setState({
       modal: "",
       login: "",
     })
+    this.reload();
   }
 
   render() {
@@ -72,17 +76,18 @@ class Nav extends Component {
               </NavbarItem>
             </Fragment>
           ) :
-            <span className="nav-right">
-              {user.role === 'Renter' ? (<span className="user-role">
+            <span>
+              {user.role === 'Renter' ? (<span>
                 <NavbarItem>
                   <Link to={"/renter/" + user._id}><p>Renter</p></Link>
                 </NavbarItem>
               </span>
-              ) : (<span className="user-role">
-                
+              ) : (<span>
+                <Fragment>
                   <NavbarItem>
                     <Link to={"/manager/" + user._id}><p>Manager Dashboard</p></Link>
                   </NavbarItem>
+                </Fragment>
               </span>)}
 
               <NavbarItem href="#" onClick={this.logout}>
@@ -112,25 +117,23 @@ class Nav extends Component {
           </Modal>
         </div>
 
-        {!user ? (
-          <div className="login-modal">
-            <Modal className={this.state.login}>
-              <ModalBackground />
-              <ModalCard className="login-card has-text-centered" style={loginBG}>
+        <div className="login-modal">
+          <Modal className={this.state.login}>
+            <ModalBackground />
+            <ModalCard className="login-card has-text-centered" style={loginBG}>
 
-                <ModalCardHeader>
-                  <ModalCardTitle><h1 className="title">Login</h1></ModalCardTitle>
-                  <Delete className="login-delete" onClick={this.modalClose} />
-                </ModalCardHeader>
-                <LoginModal
-                close={this.modalClose}/>
-                <ModalCardFooter hasTextAlign="centered">
+              <ModalCardHeader>
+                <ModalCardTitle><h1 className="title">Login</h1></ModalCardTitle>
+                <Delete className="login-delete" onClick={this.modalClose} />
+              </ModalCardHeader>
+              <LoginModal
+              close={this.modalClose}/>
+              <ModalCardFooter hasTextAlign="centered">
 
-                </ModalCardFooter>
-              </ModalCard>
-            </Modal>
-          </div>
-        ) : null}
+              </ModalCardFooter>
+            </ModalCard>
+          </Modal>
+        </div>
       </Navbar>
     );
   }
