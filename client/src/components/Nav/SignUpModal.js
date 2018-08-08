@@ -85,6 +85,21 @@ class SignUpModal extends Component {
     }
   };
 
+  // Format phone number with (xxx) xxx-xxxx formats price and property size to have "," seperators
+  formatPhoneNumber = event => {
+
+    if (this.state.phonenumber) {
+      let { name, value } = event.target
+      let numbers = value.replace(/\D/g, '')
+      let char = { 0: '(', 3: ') ', 6: '-' };
+      value = '';
+
+      for (var i = 0; i < numbers.length; i++) {
+        this.setState({ [name]: value += (char[i] || '') + numbers[i] })
+      }
+    }
+  }
+
   render() {
     return (
       <div className="sign-up-modal columns">
@@ -126,8 +141,9 @@ class SignUpModal extends Component {
               <Input
                 value={this.state.phonenumber}
                 onChange={this.handleInputChange}
+                onKeyUp={this.formatPhoneNumber}
                 name="phonenumber"
-                type="number"
+                type="Text"
                 placeholder='Phone Number'
                 isSize="medium" />
             </Control>

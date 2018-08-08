@@ -41,7 +41,6 @@ class Nav extends Component {
     this.props.logout()
   }
 
-
   modalClose = () => {
     this.setState({
       modal: "",
@@ -114,23 +113,25 @@ class Nav extends Component {
           </Modal>
         </div>
 
-        <div className="login-modal">
-          <Modal className={this.state.login}>
-            <ModalBackground />
-            <ModalCard className="login-card has-text-centered" style={loginBG}>
+        {!user ? (
+          <div className="login-modal">
+            <Modal className={this.state.login}>
+              <ModalBackground />
+              <ModalCard className="login-card has-text-centered" style={loginBG}>
 
-              <ModalCardHeader>
-                <ModalCardTitle><h1 className="title">Login</h1></ModalCardTitle>
-                <Delete className="login-delete" onClick={this.modalClose} />
-              </ModalCardHeader>
-              <LoginModal
-              close={this.modalClose}/>
-              <ModalCardFooter hasTextAlign="centered">
+                <ModalCardHeader>
+                  <ModalCardTitle><h1 className="title">Login</h1></ModalCardTitle>
+                  <Delete className="login-delete" onClick={this.modalClose} />
+                </ModalCardHeader>
+                <LoginModal
+                close={this.modalClose}/>
+                <ModalCardFooter hasTextAlign="centered">
 
-              </ModalCardFooter>
-            </ModalCard>
-          </Modal>
-        </div>
+                </ModalCardFooter>
+              </ModalCard>
+            </Modal>
+          </div>
+        ) : null}
       </Navbar>
     );
   }
