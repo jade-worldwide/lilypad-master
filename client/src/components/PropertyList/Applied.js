@@ -14,52 +14,56 @@ import { connect } from 'react-redux';
 
 class Applied extends Component {
   // Setting our component's initial state
-  state = {
-    modal: "",
-    user: {},
-    properties: [],
-    applications: [],
-    propertyNum: [],
-    applicationNum: [],
-    propertyId: '',
-    applicationId: ''
+  // state = {
+  //   modal: "",
+  //   user: {
+  //     property: {
+  //       application: []
+  //     },
+  //   },
+  //   properties: [],
+  //   applications: [],
+  //   propertyNum: [],
+  //   applicationNum: [],
+  //   propertyId: '',
+  //   applicationId: ''
 
-  };
-  componentDidMount() {
-    this.loadUser();
-    // this.loadProperties();
-  }
+  // // };
+  // componentDidMount() {
+  //   this.loadUser();
+  //   // this.loadProperties();
+  // }
 
-  loadUser = () => {
-    const { user } = this.props;
-    API.getUser(user._id)
-      .then(res => {
-        this.setState({ user: res.data, propertyNum: res.data.property.length, propertyId: res.data.property })
-        let userProp = (res.data.property)
-        for (let peterPanda of userProp) {
-          console.log("Property ID: ", peterPanda)
-          API.getProperty(peterPanda)
-            .then(res => {
-              this.setState({ properties: this.state.properties.concat(res.data), applicationNum: res.data.application.length, applicationId: res.data.application })
-              let userApp = (res.data.application)
-              for (let clydeFrog of userApp) {
-                console.log("Application ID: ", clydeFrog)
-                API.getApplication(clydeFrog)
-                  .then(res =>
-                    this.setState({ applications: this.state.applications.concat(res.data) })
-                  )
-              }
-            })
-        }
-      })
-      .catch(err => console.log(err));
-  }
+  // loadUser = () => {
+  //   const { user } = this.props;
+  //   API.getUser(user._id)
+  //     .then(res => {
+  //       this.setState({ user: res.data, propertyNum: res.data.property.length, propertyId: res.data.property })
+  //       let userProp = (res.data.property)
+  //       for (let peterPanda of userProp) {
+  //         console.log("Property ID: ", peterPanda)
+  //         API.getProperty(peterPanda)
+  //           .then(res => {
+  //             this.setState({ properties: this.state.properties.concat(res.data), applicationNum: res.data.application.length, applicationId: res.data.application })
+  //             let userApp = (res.data.application)
+  //             for (let clydeFrog of userApp) {
+  //               console.log("Application ID: ", clydeFrog)
+  //               API.getApplication(clydeFrog)
+  //                 .then(res =>
+  //                   this.setState({ applications: this.state.applications.concat(res.data) })
+  //                 )
+  //             }
+  //           })
+  //       }
+  //     })
+  //     .catch(err => console.log(err));
+  // }
   render() {
     // console.log("--application inside applied " + this.state.applications)
     // console.log("the user id yo " + this.state.user._id);
     return (
       <div className="property-list">
-        {this.state.applications.map(application => (
+        {this.props.applications.map(application => (
 
           <AccordionItem>
             <AccordionItemTitle>

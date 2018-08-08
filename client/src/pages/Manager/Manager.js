@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import NewPropertyForm from "../../components/NewPropertyForm/NewPropertyForm";
 import { PropertyList, /*Filters*/ } from "../../components/PropertyList";
-import { Container, Button, Modal, ModalCard, ModalBackground, /*ModalCardFooter, ModalCardHeader,*/ Delete, ModalCardBody } from 'bloomer';
+import { Container, Button, Modal, ModalCard, ModalBackground, /*ModalCardFooter, ModalCardHeader,*/ Delete, ModalCardBody, Table } from 'bloomer';
 import modal from "./modal-bg.svg";
 import "./Manager.css";
 // import { login } from '../../actions/authActions'
@@ -18,7 +18,9 @@ export class Manager extends Component {
   // Setting our component's initial state
   state = {
     modal: "",
-    user: {},
+    user: {
+      property: [],
+    },
     properties: [],
     applications: [],
     propertyNum: [],
@@ -50,19 +52,22 @@ export class Manager extends Component {
     API.getUser(this.props.match.params.id)
       .then(res => {
         this.setState({ user: res.data, propertyNum: res.data.property.length })
-        let userProp = (res.data.property)
-        console.log("userProp=>")
-        for (let peterPanda of userProp) {
-          console.log("Property ID: ", peterPanda)
-          API.getProperty(peterPanda)
-            .then(res => {
-              this.setState({ properties: this.state.properties.concat(res.data), applicationNum: res.data.application.length, applicationId: res.data.application })
-            })
-        }
+        console.log("--Front End: " + res.data);
+        // let userProp = (res.data.property)
+        // console.log("userProp=>")
+        // for (let peterPanda of userProp) {
+        //   console.log("Property ID: ", peterPanda)
+        //   API.getProperty(peterPanda)
+        //     .then(res => {
+        //       this.setState({ properties: this.state.properties.concat(res.data), applicationNum: res.data.application.length, applicationId: res.data.application })
+        //     })
+        // }
       }).catch(err => console.log(err));
   }
 
   render() {
+    console.log("--Property ID: " + this.state.user.property)
+    console.log(this.state.user)
     return (
       <div className="manager">
         <Container className="manager-container">
@@ -83,15 +88,31 @@ export class Manager extends Component {
           </div>
 
           <h1 className="title has-text-centered">My Properties</h1>
-          <div>
-            {this.state.properties.map(properties => (
+          <Table>
+      <thead>
+        <tr>
+          <th className="address-column">Address</th>
+          <th className="rented-column">Rented</th>
+          <th className="app-column">Applications</th>
+          <th className="delete-column"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+      <div>
+            {this.state.user.property.map(property => (
               <PropertyList
-                title={properties.title}
-                applicationNum={this.state.applicationNum}
-                _id={properties._id}
+                title={property.title}
+                applicationNum={property.application.length}
+                property={property}
+                _id={property._id}
+                
               />
             ))}
           </div>
+      </tbody>
+
+    </Table>
 
           <div className="new-property-modal">
             <Modal className={this.state.modal}>
@@ -113,7 +134,6 @@ export class Manager extends Component {
               </ModalCard>
             </Modal>
           </div>
-
         </Container>
       </div>
     );

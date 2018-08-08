@@ -4,7 +4,7 @@ let passport = require('passport');
 let LocalStrategy = require('passport-local').Strategy;
 
 let User = require('../../models/User');
-let property = require("../../models/Property");
+let Property = require("../../models/Property");
 
 
 // Register User
@@ -129,8 +129,38 @@ router.get("/manager/:id", (req, res) => {
         console.log("No property ID detected")
     } else {
         User
-            .findById(req.params.id)
-            .then(dbModel => res.json(dbModel))
+			.findById(req.params.id)
+			.populate({
+				path: 'property',
+				populate: {
+					path: 'application',
+				},
+			})
+            .then(dbModel => {
+				res.json(dbModel);
+				console.log("--BackEnd: " + dbModel);
+			})
+            .catch(err => res.status(422).json(err));
+    }
+});
+
+// View one property
+router.get("/renter/:id", (req, res) => {
+    if (req.params.id === "undefined") {
+        console.log("No property ID detected")
+    } else {
+        User
+			.findById(req.params.id)
+			.populate({
+				path: 'property',
+				populate: {
+					path: 'application',
+				},
+			})
+            .then(dbModel => {
+				res.json(dbModel);
+				console.log("--BackEnd: " + dbModel);
+			})
             .catch(err => res.status(422).json(err));
     }
 });

@@ -63,12 +63,6 @@ class Nav extends Component {
           </NavbarItem>
         </NavbarBrand>
         <NavbarEnd>
-          <NavbarItem>
-            <Link to={"/property"}><p>Property</p></Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link to={"/results"}><p>Results</p></Link>
-          </NavbarItem>
           {!user ? (
             <Fragment>
               <NavbarItem href="#" onClick={this.loginOpen}>

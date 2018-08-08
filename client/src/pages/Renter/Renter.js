@@ -84,7 +84,7 @@ class Renter extends Component {
                   price={properties.price}
                   numOfBeds={properties.numOfBeds}
                   propertySize={properties.propertySize}
-                  photos={properties.photos}
+                  photos={properties.photos[0]}
                 />
               </Link>
             ))}

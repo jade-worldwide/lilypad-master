@@ -11,7 +11,9 @@ import "./Property.css";
 class Property extends Component {
   // Setting our component's initial state
   state = {
-    property: {},
+    property: {
+      photos: []
+    },
     liked: null,
     shared: "copy-url",
   };
@@ -42,7 +44,7 @@ class Property extends Component {
 
 
   render() {
-    const mainImage = { backgroundImage: `url(${this.state.property.photos})` }
+    const mainImage = { backgroundImage: `url(${this.state.property.photos[0]})` }
     return (
       <div className="Property">
         <div className="main-image" style={ mainImage }>
