@@ -8,11 +8,12 @@ import { Container, Title, /*Image,*/ Box, Button, Subtitle } from 'bloomer';
 import house from './house.jpg';
 import "./Property.css";
 
-const mainImage = { backgroundImage: `url(${house})` }
 class Property extends Component {
   // Setting our component's initial state
   state = {
-    property: [],
+    property: {
+      photos: []
+    },
     user: [],
     liked: null,
     userLikes: [],
@@ -28,9 +29,9 @@ class Property extends Component {
   }
 
   loadUser = () => {
-    const { user } = this.props;
-    if (user) {
-      let currentUser = user._id
+    const { auth } = this.props;
+    if (auth.user) {
+      let currentUser = auth.user._id
       console.log("User Id =>", currentUser)
       API.getUser(currentUser)
         .then(res => {
@@ -70,6 +71,7 @@ class Property extends Component {
 
   render() {
     const { user } = this.props;
+    const mainImage = { backgroundImage: `url(${this.state.property.photos[0]})` }
     return (
       <div className="Property">
         <div className="main-image" style={mainImage}>
