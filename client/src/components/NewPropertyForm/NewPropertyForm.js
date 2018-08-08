@@ -202,7 +202,10 @@ class NewPropertyForm extends Component {
                 photos: this.state.photos,
                 user
             })
-                .then(res => console.log("submitted"))
+                .then(res => {
+                    console.log("submitted")
+                    this.props.close();
+                })
                 .catch(err => console.log(err));
         } else {
             console.log("Not Submitting")

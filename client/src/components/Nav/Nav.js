@@ -41,12 +41,15 @@ class Nav extends Component {
     this.props.logout()
   }
 
-
+  reload = () => {
+    window.location.reload();
+ }
   modalClose = () => {
     this.setState({
       modal: "",
       login: "",
     })
+    this.reload();
   }
 
   render() {

@@ -27,13 +27,17 @@ class Renter extends Component {
     this.setState({ modal: "is-active" })
   }
 
-
+  reload = () => {
+    window.location.reload();
+ }
 
   modalClose = () => {
     this.setState({
       modal: "",
       login: "",
      })
+
+    this.reload();
   }
 
   componentDidMount() {
@@ -99,7 +103,8 @@ class Renter extends Component {
 
                   <ModalCardBody>
                       <Delete onClick={this.modalClose} />
-                      <RenterApplication />
+                      <RenterApplication 
+                      close={this.modalClose}/>
                 </ModalCardBody>
 
 
