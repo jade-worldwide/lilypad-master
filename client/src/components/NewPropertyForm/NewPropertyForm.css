@@ -20,3 +20,7 @@ td.list-image {
 .select, .select select {
     width: 100%;
 }
+
+.new-property-form {
+  margin-bottom: 100px;
+}

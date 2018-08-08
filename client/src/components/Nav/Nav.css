@@ -138,6 +138,14 @@ button.delete.login-delete {
   height: 24px;
 }
 
+span.nav-right {
+    display: flex;
+}
+
+span.user-role {
+    align-self: center;
+}
+
 @media screen and (min-width: 769px) {
   .modal-content, .modal-card {
 

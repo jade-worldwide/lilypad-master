@@ -103,17 +103,17 @@ export class Manager extends Component {
       </thead>
 
       <tbody>
-      <div>
+
             {this.state.user.property.map(property => (
               <PropertyList
                 title={property.title}
                 applicationNum={property.application.length}
                 property={property}
                 _id={property._id}
-                
+
               />
             ))}
-          </div>
+          
       </tbody>
 
     </Table>
