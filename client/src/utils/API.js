@@ -8,8 +8,8 @@ export default {
   getProperties: function (query) {
     const urlPath = url.format({
       protocol: "http",
-      hostname: "heroku_xzbfn00r:ed123456@ds153412.mlab.com",
-      port: "53412",
+      hostname: "localhost",
+      port: "3000",
       pathname: "/results/"
     })
 
@@ -45,7 +45,7 @@ export default {
 
     console.log('dbQuery ->', dbQuery)
     console.log('query ->', query)
-    return axios.post(urlPath, { dbQuery })
+    return axios.post("/results/", { dbQuery })
   },
 
   // Gets the Property with the given id
