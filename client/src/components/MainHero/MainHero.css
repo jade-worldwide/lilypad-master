@@ -13,6 +13,16 @@
   background-size: cover;
 }
 
+@media screen and (min-width: 769px) {
+  .hero.is-medium .hero-body {
+      padding-bottom: 0rem;
+      padding-top: 9rem;
+  }
+
+}
+
+
+
 h1.title {
   font-family: 'Frank Ruhl Libre', serif;
   color: #343947;
