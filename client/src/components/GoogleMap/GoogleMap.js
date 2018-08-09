@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import { fitBounds } from 'google-map-react/utils';
 
-import pad from './pad.svg';
+import pin from './pin.svg';
 import Marker from '../Marker/Marker.js';
 import 'bulma/css/bulma.css';
 import "./GoogleMap.css";
@@ -80,7 +80,7 @@ export class GoogleMap extends Component {
         image={marker.photos}
         lat={marker.latitude}
         lng={marker.longitude}
-        markerImage={pad}
+        markerImage={pin}
         onClick={() => this.markerGotClicked(marker._id)}
         isBoxVisible={marker._id === this.state.openMarker}
       />

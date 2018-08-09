@@ -1,6 +1,8 @@
 .card  {
     cursor: pointer;
-    min-width: 100px;
+    min-width: 200px;
     min-height: 100px;
     background-color: white;
+    font-size: 1.25em;
+    font-family: 'Quicksand', sans-serif;
 }
