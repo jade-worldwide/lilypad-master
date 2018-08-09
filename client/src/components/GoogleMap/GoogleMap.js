@@ -107,7 +107,7 @@ export class GoogleMap extends Component {
           }}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
-          center={{ lat: 37.432335, lng: -121.899574 }}
+          center={center}
           zoom={zoom}
         >
           {markers}
