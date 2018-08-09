@@ -186,7 +186,7 @@ class Results extends Component {
                 value={form.pets}
                 name="pets"
                 type="text"
-                isSize="medium" >
+                >
                 <option>Any</option>
                 <option>Cat</option>
                 <option>Dog</option>

@@ -146,6 +146,10 @@ span.user-role {
     align-self: center;
 }
 
+.login-title {
+    width: 100%;
+}
+
 @media screen and (min-width: 769px) {
   .modal-content, .modal-card {
 

@@ -86,13 +86,13 @@ class Nav extends Component {
               </NavbarItem>
             </Fragment>
           ) :
-            <span>
-              {user.role === 'Renter' ? (<span>
+            <span className="nav-right">
+              {user.role === 'Renter' ? (<span className="user-role">
                 <NavbarItem>
                   <Link to={"/renter/" + user._id}><p>Renter</p></Link>
                 </NavbarItem>
               </span>
-              ) : (<span>
+            ) : (<span className="user-role">
                 <Fragment>
                   <NavbarItem>
                     <Link to={"/manager/" + user._id}><p>Manager Dashboard</p></Link>
@@ -133,7 +133,7 @@ class Nav extends Component {
             <ModalCard className="login-card has-text-centered" style={loginBG}>
 
               <ModalCardHeader>
-                <ModalCardTitle><h1 className="title">Login</h1></ModalCardTitle>
+                <h1 className="title login-title">Login</h1>
                 <Delete className="login-delete" onClick={this.modalClose} />
               </ModalCardHeader>
               <LoginModal

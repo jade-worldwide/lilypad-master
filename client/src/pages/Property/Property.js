@@ -78,8 +78,9 @@ class Property extends Component {
   render() {
     const { user } = this.props;
     const mainImage = { backgroundImage: `url(${this.state.property.photos[0]})` }
+    const share = "https://www.facebook.com/sharer/sharer.php?u=" + window.location.href
     return (
-      <div className="Property">
+      <div className="property">
         <div className="main-image" style={mainImage}>
           <Container className="property-container image-buttons">
             <div className="buttons-left">
@@ -92,13 +93,13 @@ class Property extends Component {
                 <span>
                   {user.role === "Renter" ? (
                     <div className="buttons-right">
-                      <Button isColor='white'><p><i className="far fa-share-square"></i>  Share</p></Button>
+                      <a href={share} target="about_blank"><Button isColor='white'><p><i className="fab fa-facebook"></i>  Share</p></Button></a>
                       <Button isColor='white' className="like-button" onClick={this.toggleLikeProperty}><p>
                         <i className={this.state.liked ? 'fas fa-heart is-liked' : 'far fa-heart'}></i> Like</p></Button>
                     </div>) :
-                    (<Button isColor='white'><p><i className="far fa-share-square"></i>  Share</p></Button>)}
+                    (<a href={share} target="about_blank"><Button isColor='white'><p><i className="fab fa-facebook"></i>  Share</p></Button></a>)}
                 </span>) :
-                (<Button isColor='white'><p><i className="far fa-share-square"></i>  Share</p></Button>)}
+                (<a href={share} target="about_blank"><Button isColor='white'><p><i className="fab fa-facebook"></i>  Share</p></Button></a>)}
             </span>
           </Container>
         </div>
