@@ -8,8 +8,8 @@ export default {
   getProperties: function (query) {
     const urlPath = url.format({
       protocol: "http",
-      hostname: "localhost",
-      port: "3000",
+      hostname: "heroku_xzbfn00r:ed123456@ds153412.mlab.com",
+      port: "53412",
       pathname: "/results/"
     })
 
