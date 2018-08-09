@@ -10,8 +10,6 @@ const defaultForm = {
   state: '',
   minPrice: 0,
   maxPrice: 100000000,
-  minSqFeet: 0,
-  maxSqFeet: 100000000,
   minBeds: 0,
   maxBeds: 10,
   pets: "Any"

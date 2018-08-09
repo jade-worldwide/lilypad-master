@@ -31,10 +31,6 @@ export default {
           $gte: query.minPrice,
           $lte: query.maxPrice
         },
-        propertySize: {
-          $gte: query.minSqFeet,
-          $lte: query.maxSqFeet
-        },
         numOfBeds: {
           $gte: query.minBeds,
           $lte: query.maxBeds
