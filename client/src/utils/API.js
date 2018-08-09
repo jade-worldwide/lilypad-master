@@ -31,10 +31,6 @@ export default {
           $gte: query.minPrice,
           $lte: query.maxPrice
         },
-        propertySize: {
-          $gte: query.minSqFeet,
-          $lte: query.maxSqFeet
-        },
         numOfBeds: {
           $gte: query.minBeds,
           $lte: query.maxBeds
@@ -49,7 +45,7 @@ export default {
 
     console.log('dbQuery ->', dbQuery)
     console.log('query ->', query)
-    return axios.post(urlPath, { dbQuery })
+    return axios.post("/results/", { dbQuery })
   },
 
   // Gets the Property with the given id

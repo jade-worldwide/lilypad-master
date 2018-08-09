@@ -16,9 +16,7 @@ const defaultForm = {
   city: '',
   state: '',
   minPrice: 0,
-  maxPrice: 200000,
-  minSqFeet: 0,
-  maxSqFeet: 100000000,
+  maxPrice: 10000,
   minBeds: 0,
   maxBeds: 10,
   minBaths: 0,
@@ -171,7 +169,7 @@ class Results extends Component {
               <Slider
                 onChange={this.onSliderValueChange}
                 name="maxPrice"
-                range value={[form.minPrice, form.maxPrice]} min={0} max={200000} />
+                range value={[form.minPrice, form.maxPrice]} min={0} max={10000} />
               <div className="slider-output">
                 <p>Min: {form.minPrice.toLocaleString()}</p>
                 <p className="max">Max: {form.maxPrice.toLocaleString()}</p>

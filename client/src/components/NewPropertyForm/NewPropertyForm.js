@@ -141,7 +141,7 @@ class NewPropertyForm extends Component {
 
     handleImageUpload = picture => {
         const formData = new FormData();
-        formData.append('file', picture[0]);
+        formData.append('file', picture.slice(-1)[0]);
         formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET)
 
         axios({
