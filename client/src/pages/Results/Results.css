@@ -38,3 +38,8 @@
 .field {
     width: 100%;
 }
+
+table.table.results-table {
+    margin-bottom: 0px;
+    /* border-bottom: 1px solid #f5f5f5; */
+}
