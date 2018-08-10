@@ -1,7 +1,7 @@
 import "./Results.css";
 import React, { Component } from "react";
 import { ResultsList } from "../../components/ResultsList";
-import { Button, Field, Label, Control, Select } from 'bloomer';
+import { Button, Field, Label, Control, Select, Table } from 'bloomer';
 import { GoogleMap } from "../../components/GoogleMap";
 import { Slider } from 'antd';
 import 'antd/lib/slider/style/index.css';
@@ -202,17 +202,23 @@ class Results extends Component {
             </div>
             <div className="result-list">
 
+              <Table className="results-table">
+                <tbody className="results-tbody">
               {this.state.properties.map(property => (
-                <Link key={property._id} to={"/property/" + property._id}>
-                  <ResultsList
-                    title={property.title}
-                    price={property.price.toLocaleString()}
-                    numOfBeds={property.numOfBeds}
-                    photos={property.photos[0]}
-                    propertySize={property.propertySize.toLocaleString()}
-                  />
-                </Link>
+
+                    <Link  className="results-link" key={property._id} to={"/property/" + property._id}>
+                      <ResultsList
+                        title={property.title}
+                        price={property.price.toLocaleString()}
+                        numOfBeds={property.numOfBeds}
+                        photos={property.photos[0]}
+                        propertySize={property.propertySize.toLocaleString()}
+                      />
+                    </Link>
+
               ))}
+            </tbody>
+            </Table>
             </div>
           </div>
           <div className="column results-column">

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import  RenterApplication from "../../components/RenterApplication/RenterApplication";
-import { Container, Button, Modal, ModalCard, /*ModalCardTitle,*/ /*ModalBackground, ModalCardFooter, ModalCardHeader,*/ Delete, ModalCardBody } from "bloomer";
+import { Container, Button, Modal, ModalCard, Table, /*ModalCardTitle,*/ /*ModalBackground, ModalCardFooter, ModalCardHeader,*/ Delete, ModalCardBody } from "bloomer";
 import { ResultsList } from "../../components/ResultsList";
 import "./Renter.css";
 import modal from "./modal-bg.svg";
@@ -81,6 +81,8 @@ class Renter extends Component {
 
           <h1 className="title has-text-centered">Liked Properties</h1>
           <div>
+            <Table className="results-table">
+              <tbody className="results-tbody">
             {this.state.properties.map(properties => (
               <Link to={"/property/" + properties._id}>
                 <ResultsList
@@ -92,6 +94,8 @@ class Renter extends Component {
                 />
               </Link>
             ))}
+          </tbody>
+          </Table>
           </div>
 
         </Container>
@@ -103,7 +107,7 @@ class Renter extends Component {
 
                   <ModalCardBody>
                       <Delete onClick={this.modalClose} />
-                      <RenterApplication 
+                      <RenterApplication
                       close={this.modalClose}/>
                 </ModalCardBody>
 
